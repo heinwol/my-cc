@@ -1,0 +1,3 @@
+--lua main.lua
+# --class-path src
+--library cctweaked-haxelib
