@@ -1,3 +1,5 @@
---lua main.lua
+-cp src
 # --class-path src
 --library cctweaked-haxelib
+--main Main
+--lua lua/main.lua
