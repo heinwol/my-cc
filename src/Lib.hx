@@ -87,10 +87,6 @@ function getDirection(d:AnyDirection):String {
 	};
 }
 
-// enum ActionResult {
-// 	Ok;
-// 	Error(e:String);
-// }
 class Empty {
 	public inline function new() {}
 
@@ -107,9 +103,6 @@ enum EmptyResult<E> {
 	Ok;
 	Error(e:E);
 }
-
-// typedef BoolResult<E> = Result<Empty, E>;
-// typedef ActionResult = BoolResult<String>;
 
 class TurtleActionResultExtender {
 	static public inline function into(res:TurtleActionResult):EmptyResult<String> {
@@ -143,17 +136,6 @@ class ResultExtender {
 		}
 	}
 }
-
-// @:forward(x, y, z)
-// abstract TurtleActionResult_(TurtleActionResult) from TurtleActionResult to TurtleActionResult {
-// 	public function into():ActionResult {
-// 		if (this.successful) {
-// 			return Ok;
-// 		} else {
-// 			return Error(this.error);
-// 		}
-// 	}
-// }
 
 enum InspectResult {
 	Ok(detail:TurtleBlockDetail);

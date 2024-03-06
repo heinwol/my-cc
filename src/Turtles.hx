@@ -9,12 +9,6 @@ using Lib.TurtleActionResultExtender;
 using Lib.ResultExtender;
 using Lib.EmptyResultExtender;
 
-function check_action_or_throw(action:TurtleActionResult) {
-	if (!action.successful) {
-		throw action.error;
-	}
-}
-
 class TurtleWithRelativeState {
 	// "relativeness" is in the sense "relative to initial position and face direction"
 	//
