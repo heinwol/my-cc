@@ -3,4 +3,5 @@
 --library cctweaked-haxelib
 --library uniontypes
 --main Main
+-D lua-vanilla
 --lua lua/main.lua

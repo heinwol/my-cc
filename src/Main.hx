@@ -63,6 +63,7 @@ class Main {
 		var x = Peripheral.find("top", (s, t:Int) -> {
 			return s.length == 1;
 		});
+		trace("lala");
 		// x.sort()
 		// Table.
 		// x.
