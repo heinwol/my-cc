@@ -1,5 +1,6 @@
 -cp src
 # --class-path src
 --library cctweaked-haxelib
+--library uniontypes
 --main Main
 --lua lua/main.lua
