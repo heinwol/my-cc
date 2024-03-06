@@ -5,7 +5,9 @@ import cc.Turtle;
 // import Union.TrustedUnion;
 import Lib;
 
-// using Lib.MoveDirection;
+using Lib.TurtleActionResultExtender;
+using Lib.ResultExtender;
+using Lib.EmptyResultExtender;
 
 function check_action_or_throw(action:TurtleActionResult) {
 	if (!action.successful) {
@@ -25,32 +27,31 @@ class TurtleWithRelativeState {
 		this.relative_face_direction = FaceDirection.Front;
 	}
 
-	public function turn(direction:FaceDirection) {
+	public function turn(direction:FaceDirection):EmptyResult<String> {
+		var set_dir = dir -> () -> {
+			this.relative_face_direction = compose_face_dir(this.relative_face_direction, dir);
+		};
 		switch direction {
 			case Front:
-				{};
+				return Ok;
 			case Left:
-				check_action_or_throw(Turtle.turnLeft());
-				this.relative_face_direction = compose_face_dir(this.relative_face_direction, FaceDirection.Left);
+				return Turtle.turnLeft().into().do_if(set_dir(FaceDirection.Left));
 			case Right:
-				check_action_or_throw(Turtle.turnRight());
-				this.relative_face_direction = compose_face_dir(this.relative_face_direction, FaceDirection.Right);
+				return Turtle.turnRight().into().do_if(set_dir(FaceDirection.Right));
 			case Back:
-				check_action_or_throw(Turtle.turnRight());
-				this.relative_face_direction = compose_face_dir(this.relative_face_direction, FaceDirection.Right);
-				check_action_or_throw(Turtle.turnRight());
-				this.relative_face_direction = compose_face_dir(this.relative_face_direction, FaceDirection.Right);
+				return Turtle.turnRight()
+					.into()
+					.do_if(set_dir(FaceDirection.Right))
+					.do_if(() -> Turtle.turnRight().into().do_if(set_dir(FaceDirection.Right)));
 		}
 	}
 
-	public function move(direction:MoveDirection) {
+	public function move(direction:MoveDirection):EmptyResult<String> {
 		switch direction {
 			case Up:
-				check_action_or_throw(Turtle.up());
-				this.relative_coordinates.y += 1;
+				return Turtle.up().into().do_if(() -> this.relative_coordinates.y += 1);
 			case Down:
-				check_action_or_throw(Turtle.down());
-				this.relative_coordinates.y -= 1;
+				return Turtle.down().into().do_if(() -> this.relative_coordinates.y -= 1);
 			case Forward | Back:
 				var coord_to_add = switch this.relative_face_direction {
 					case Front: new Vec(1, 0, 0);
@@ -60,14 +61,12 @@ class TurtleWithRelativeState {
 				}
 				switch direction {
 					case Forward:
-						check_action_or_throw(Turtle.forward());
-						this.relative_coordinates += coord_to_add;
+						return Turtle.forward().into().do_if(() -> this.relative_coordinates += coord_to_add);
 					case Back:
-						check_action_or_throw(Turtle.back());
-						this.relative_coordinates -= coord_to_add;
-					case _: {} // Never
+						return Turtle.back().into().do_if(() -> this.relative_coordinates -= coord_to_add);
+					case _:
+						return Ok; // Never
 				}
-				check_action_or_throw(Turtle.forward());
 		}
 	}
 }
