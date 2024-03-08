@@ -115,11 +115,20 @@ class TurtleActionResultExtender {
 }
 
 class EmptyResultExtender {
-	static public function do_if<E, T>(res:EmptyResult<E>, fun:(() -> Void)):EmptyResult<E> {
+	static public function do_if<E>(res:EmptyResult<E>, fun:(() -> Void)):EmptyResult<E> {
 		switch res {
 			case Ok:
 				fun();
 				return Ok;
+			case Error(e):
+				return Error(e);
+		}
+	}
+
+	static public function and_then<E>(res:EmptyResult<E>, fun:(() -> EmptyResult<E>)):EmptyResult<E> {
+		switch res {
+			case Ok:
+				return fun();
 			case Error(e):
 				return Error(e);
 		}

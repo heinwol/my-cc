@@ -36,7 +36,8 @@ class TurtleWithRelativeState {
 				return Turtle.turnRight()
 					.into()
 					.do_if(set_dir(FaceDirection.Right))
-					.do_if(() -> Turtle.turnRight().into().do_if(set_dir(FaceDirection.Right)));
+					.and_then(() -> Turtle.turnRight().into())
+					.do_if(set_dir(FaceDirection.Right));
 		}
 	}
 
