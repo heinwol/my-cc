@@ -1,3 +1,5 @@
+.direnv
+
 lua
 /.haxelib/
 !/.haxelib/cctweaked-haxelib/**
