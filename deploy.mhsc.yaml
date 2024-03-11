@@ -10,4 +10,4 @@ instances:
     worlds:
       - name: New World
         programs_computers:
-          simple_http: [0]
+          simple_http: [0, 1]

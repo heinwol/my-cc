@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "Instance": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "minecraft_folder": {
+          "format": "path",
+          "title": "Minecraft Folder",
+          "type": "string"
+        },
+        "worlds": {
+          "items": {
+            "$ref": "#/$defs/World"
+          },
+          "title": "Worlds",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "minecraft_folder",
+        "worlds"
+      ],
+      "title": "Instance",
+      "type": "object"
+    },
+    "World": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "programs_computers": {
+          "additionalProperties": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "title": "Programs Computers",
+          "type": "object"
+        }
+      },
+      "required": [
+        "name",
+        "programs_computers"
+      ],
+      "title": "World",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "instances": {
+      "items": {
+        "$ref": "#/$defs/Instance"
+      },
+      "title": "Instances",
+      "type": "array"
+    }
+  },
+  "required": [
+    "instances"
+  ],
+  "title": "Instances",
+  "type": "object"
+}
