@@ -29,7 +29,7 @@
             packages = with pkgs; [
               haxe
               go-task
-              nushell
+              # nushell
               lua
               (python311.withPackages (p: with p; [
                 pydantic

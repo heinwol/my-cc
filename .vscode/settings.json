@@ -1,0 +1,15 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "**/*.mhsc.yaml"
+            ],
+            "url": "./mhsc.json"
+        }
+    ],
+    "yaml.schemas": {
+        "mhsc.json": [
+            "**/*.mhsc.yaml"
+        ]
+    }
+}

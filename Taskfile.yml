@@ -2,12 +2,14 @@
 
 version: "3"
 
-vars:
-  # GREETING: Hello, World!
-  INSTANCE: Dire2
+# vars:
+# GREETING: Hello, World!
+# INSTANCE: Dire2
 
 tasks:
   deploy:
     cmds:
-      - nu ./deploy.nu --instance {{.INSTANCE}}
-    silent: false
+      - ./deploy.py
+  normalize:
+    cmds:
+      - ./deploy.py --generate-schema

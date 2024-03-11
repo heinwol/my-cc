@@ -2,7 +2,6 @@
 
 from functools import reduce
 import json
-from os import PathLike
 from typing import Annotated
 from yaml import safe_load  # type: ignore
 from pathlib import Path
