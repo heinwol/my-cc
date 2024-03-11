@@ -30,6 +30,8 @@
               haxe
               go-task
               nushell
+              lua
+              (python311.withPackages (p: with p; [ pydantic pyyaml ]))
             ];
           };
         };

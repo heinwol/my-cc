@@ -1,0 +1,7 @@
+instances:
+  - name: Dire2
+    minecraft_folder: ~/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/instances/Dire2/.minecraft
+    worlds:
+      - name: Biomization
+        programs_computers:
+          simple_http: [0]
