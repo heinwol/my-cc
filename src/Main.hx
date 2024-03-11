@@ -1,4 +1,5 @@
 import haxe.exceptions.NotImplementedException;
+import cc.Vector;
 
 class Main {
 	static function main() {

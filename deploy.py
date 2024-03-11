@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from yaml import safe_load
+from yaml import safe_load  # type: ignore
 from pathlib import Path
 import subprocess
 from pydantic import BaseModel

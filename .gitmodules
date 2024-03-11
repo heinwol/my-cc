@@ -1,0 +1,3 @@
+[submodule ".haxelib/cctweaked-haxelib/cctweaked-haxelib"]
+	path = .haxelib/cctweaked-haxelib/cctweaked-haxelib
+	url = https://github.com/heinwol/cctweaked-haxelib
