@@ -5,3 +5,9 @@ instances:
       - name: Biomization
         programs_computers:
           simple_http: [0]
+  - name: 1.20.1
+    minecraft_folder: ~/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/instances/1.20.1/.minecraft
+    worlds:
+      - name: New World
+        programs_computers:
+          simple_http: [0]

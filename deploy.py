@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from functools import reduce
 from yaml import safe_load  # type: ignore
 from pathlib import Path
 import subprocess
@@ -32,10 +33,13 @@ def assert_path_exists(path: Path | str) -> None:
 def compile_program(name: str) -> Path:
     program_path = Path("./src/programs").joinpath(name)
     assert_path_exists(program_path)
+    config = Path("build.hxml").read_text().split("\n")
+    config = filter(lambda s: not (s.startswith("--lua") or len(s) == 0), config)
+    config = reduce(lambda acc, s: acc + s.split(), config, [])
     subprocess.run(
-        [
-            "haxe",
-            "build.hxml",
+        ["haxe"]
+        + config
+        + [
             "-cp",
             f"{program_path}",
             "--lua",
@@ -51,13 +55,15 @@ def deploy_by_schema(schema: Instances):
         minecraft_folder = instance.minecraft_folder.expanduser().resolve()
         if not minecraft_folder.exists():
             warnings.warn(
-                f"Skipping instance `{instance.name}` as path `{minecraft_folder}` doesn't exist"
+                f"Skipping instance `{instance.name}` as path `{minecraft_folder}` doesn't exist",
             )
         else:
             for world in instance.worlds:
                 worldpath = minecraft_folder.joinpath("saves", world.name)
                 if not worldpath.exists():
-                    warnings.warn(f"Skipping world `{world.name}`: doesn't exist")
+                    warnings.warn(
+                        f"Skipping world `{world.name}`: doesn't exist",
+                    )
                     print("lala")
                 else:
                     for program_name, computers in world.programs_computers.items():

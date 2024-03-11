@@ -1,7 +1,8 @@
--cp src
 -cp src/lib
+-cp src
 --library cctweaked-haxelib
 --library uniontypes
 --main Main
 -D lua-vanilla
+--lua target/main.lua
 --dce full
