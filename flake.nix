@@ -31,7 +31,7 @@
               go-task
               # nushell
               lua
-              (python311.withPackages (p: with p; [
+              (python312.withPackages (p: with p; [
                 pydantic
                 pyyaml
                 typer
@@ -39,7 +39,6 @@
             ];
           };
         };
-        # pkgs = pkgs;
       };
       flake = {
         # The usual flake attributes can be defined here, including system-
